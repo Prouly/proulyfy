@@ -73,6 +73,34 @@ export const Volume = () => (
   </svg>
 );
 
+export const Previous = () => (
+  <svg 
+    fill="currentColor"
+    role="img"
+    height="16"
+    width="16"
+    aria-hidden="true"
+    aria-label="Next song"
+    viewBox="0 0 16 16" 
+  >
+    <path d="M3.3 1a.7.7 0 0 1 .7.7v5.15l9.95-5.744a.7.7 0 0 1 1.05.606v12.575a.7.7 0 0 1-1.05.607L4 9.149V14.3a.7.7 0 0 1-.7.7H1.7a.7.7 0 0 1-.7-.7V1.7a.7.7 0 0 1 .7-.7h1.6z"></path>
+  </svg> 
+);
+
+export const Next = () => (
+  <svg 
+    fill="currentColor"
+    role="img"
+    height="16"
+    width="16"
+    aria-hidden="true"
+    aria-label="Next song"
+    viewBox="0 0 16 16" 
+  >
+    <path d="M12.7 1a.7.7 0 0 0-.7.7v5.15L2.05 1.107A.7.7 0 0 0 1 1.712v12.575a.7.7 0 0 0 1.05.607L12 9.149V14.3a.7.7 0 0 0 .7.7h1.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7h-1.6z"></path>
+  </svg> 
+);
+
 const CurrentSong = ({ image, title, artists }) => {
   return (
     <div
@@ -214,19 +242,28 @@ export function Player() {
   };
 
   return (
-    <div className="flex flex-row justify-between w-full px-1 z-50">
+    <div className="flex flex-row justify-between w-full px-1 pt-2 z-50">
       <div className="w-[200px]">
         <CurrentSong {...currentMusic.song} />
       </div>
 
       <div className="grid place-content-center gap-4 flex-1">
-        <div className="flex justify-center flex-col items-center">
+        <div className="flex justify-center flex-row items-center gap-4">
+          <button className="p-2">
+            <Previous />
+          </button>
           <button className="bg-white rounded-full p-2" onClick={handleClick}>
             {isPlaying ? <Pause /> : <Play />}
           </button>
-          <SongControl audio={audioRef} />
-          <audio ref={audioRef} />
+          <button className="p-2">
+            <Next />
+          </button>
         </div>
+
+          <div className="flex justify-center items-center mt-[-14px]">
+            <SongControl audio={audioRef} />
+            <audio ref={audioRef} />
+          </div>
       </div>
 
       <div className="grid place-content-center">
